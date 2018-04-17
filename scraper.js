@@ -10,15 +10,15 @@ function initDatabase(callback) {
   // Set up sqlite database.
   var db = new sqlite3.Database("data.sqlite");
   db.serialize(function() {
-    db.run("CREATE TABLE IF NOT EXISTS data (name TEXT)");
+    db.run("CREATE TABLE IF NOT EXISTS data (id TEXT, name TEXT)");
     callback(db);
   });
 }
 
-function updateRow(db, value) {
+function updateRow(db, id, name) {
   // Insert some data.
-  var statement = db.prepare("INSERT INTO data VALUES (?)");
-  statement.run(value);
+  var statement = db.prepare("INSERT INTO data VALUES (?, ?)");
+  statement.run(id, name);
   statement.finalize();
 }
 
@@ -43,16 +43,19 @@ function fetchPage(url, callback) {
 
 function run(db) {
   // Use request to read in pages.
+  console.log("process.env", process.env);
+  console.log("process.env.MORPH_API_KEY=" + process.env.MORPH_API_KEY);
   var api_key = process.env.MORPH_API_KEY;
   console.log("api_key=" + api_key);
   fetchPage("https://api.digitalnz.org/records.json?and[dc_type]=Name+Authority&and[collection]=TAPUHI&record_type=1&fields=title,record_id&sort=syndication_date&direction=desc&api_key=" + api_key, function (data) {
     // Use cheerio to find things in the page with css selectors.
     //var $ = cheerio.load(body);
-    console.log("data=", data);
-/*
-    var results = body.search.results;
+    console.log("data=", data.search.results);
+    var results = data.search.results;
+    var len = results.length;
+    console.log("len=", len);
     
-
+/*
     var elements = $("div.media-body span.p-name").each(function () {
       var value = $(this).text().trim();
       updateRow(db, value);
