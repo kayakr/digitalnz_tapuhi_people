@@ -44,6 +44,7 @@ function fetchPage(url, callback) {
 function run(db) {
   // Use request to read in pages.
   let api_key = process.env.MORPH_API_KEY;
+  console.log("api_key=" + api_key);
   fetchPage("https://api.digitalnz.org/records.json?and[dc_type]=Name+Authority&and[collection]=TAPUHI&record_type=1&fields=title,record_id&sort=syndication_date&direction=desc&api_key=" + api_key, function (data) {
     // Use cheerio to find things in the page with css selectors.
     //var $ = cheerio.load(body);
