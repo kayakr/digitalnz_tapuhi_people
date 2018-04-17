@@ -43,10 +43,10 @@ function fetchPage(url, callback) {
 
 function run(db) {
   // Use request to read in pages.
-  console.log("process.env", process.env);
-  console.log("process.env.MORPH_API_KEY=" + process.env.MORPH_API_KEY);
+  //console.log("process.env", process.env);
+  //console.log("process.env.MORPH_API_KEY=" + process.env.MORPH_API_KEY);
   var api_key = process.env.MORPH_API_KEY;
-  console.log("api_key=" + api_key);
+  console.log("api_key defined?", api_key == null);
   fetchPage("https://api.digitalnz.org/records.json?and[dc_type]=Name+Authority&and[collection]=TAPUHI&record_type=1&fields=title,record_id&sort=syndication_date&direction=desc&api_key=" + api_key, function (data) {
     // Use cheerio to find things in the page with css selectors.
     //var $ = cheerio.load(body);
