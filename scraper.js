@@ -50,7 +50,7 @@ function run(db) {
   
   // If no key, we may be running on local.
   console.log("api_key defined?", api_key !== null);
-  fetchPage("https://api.digitalnz.org/records.json?and[dc_type]=Name+Authority&and[collection]=TAPUHI&record_type=1&fields=title,record_id&sort=syndication_date&direction=desc&api_key=" + api_key, function (data) {
+  fetchPage("https://api.digitalnz.org/records.json?and[dc_type]=Name+Authority&and[collection]=TAPUHI&record_type=1&fields=title,record_id&sort=syndication_date&direction=desc&per_page=100&api_key=" + api_key, function (data) {
 
     //console.log("data=", data);
     let results = JSON.parse(data);
