@@ -49,7 +49,7 @@ function run(db) {
   //console.log("process.argv", process.argv);
   
   // If no key, we may be running on local.
-  console.log("api_key defined?", api_key !== null);
+  //console.log("api_key defined?", api_key !== null);
   // per page limit is 100 - is this documented anywhere?
   fetchPage("https://api.digitalnz.org/records.json?and[dc_type]=Name+Authority&and[collection]=TAPUHI&record_type=1&fields=title,record_id&sort=syndication_date&direction=desc&per_page=100&api_key=" + api_key, function (data) {
 
@@ -65,7 +65,7 @@ function run(db) {
         if (record != null) {
           var id = record.record_id;
           var name = record.title;
-          console.log('record=', [id, name]);
+          //console.log('record=', [id, name]);
           updateRow(db, [id, name]);
         }
       }
