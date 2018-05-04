@@ -70,7 +70,8 @@ function run(db) {
         }
       }
     }
-    readRows(db);
+    // Report entire db.
+    //readRows(db);
 
     db.close();
   });
