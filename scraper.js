@@ -55,7 +55,7 @@ function run(db) {
 
     //console.log("data=", data);
     let results = JSON.parse(data);
-    console.log("results=", results);
+    //console.log("results=", results);
     //var results = data.search.results;
     var len = results.search.results.length;
     console.log("len=", len);
